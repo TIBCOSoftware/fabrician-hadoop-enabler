@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="scripting container" default="deploy" basedir=".">
+	<property name="Product" value="hadoop" />
+	<property name="GridLibraryVersion" value="1.0" />
+	<property name="GridLibraryName-core" value="build/${Product}-core-enabler-${GridLibraryVersion}-gridlib.zip" />
+	<property name="GridLibraryName-psuedocluster" value="${Product}-psuedocluster-enabler-${GridLibraryVersion}-gridlib.zip" />
+	<property name="GridLibraryName-datanode" value="${Product}-datanode-enabler-${GridLibraryVersion}-gridlib.zip" />
+	<property name="GridLibraryName-namenode" value="${Product}-namenode-enabler-${GridLibraryVersion}-gridlib.zip" />
+	<property name="GridLibraryName-secondarynamenode" value="${Product}-secondarynamenode-enabler-${GridLibraryVersion}-gridlib.zip" />
+	<property name="GridLibraryName-jobtracker" value="${Product}-jobtracker-enabler-${GridLibraryVersion}-gridlib.zip" />
+	<property name="GridLibraryName-tasktracker" value="${Product}-tasktracker-enabler-${GridLibraryVersion}-gridlib.zip" />
+	<property name="GridLibraryName-balancer" value="${Product}-balancer-enabler-${GridLibraryVersion}-gridlib.zip" />
+	<property name="gridlib" value="gridlibs" />
+	<property name='lib' location='lib' />
+
+	<macrodef name="macro-assemble-gridlib">
+	   <attribute name="enablername"/>
+	   <sequential>
+
+	   		<!-- Create copy of core gridlib -->
+	   		<copy file="${GridLibraryName-core}" tofile="${gridlib}/${Product}-@{enablername}-enabler-${GridLibraryVersion}-gridlib.zip"/>
+
+	   		<!-- Add enabler specific content -->
+			<zip destfile="${gridlib}/${Product}-@{enablername}-enabler-${GridLibraryVersion}-gridlib.zip" excludes="" update="true">
+				<zipfileset dir="src/hadoop-@{enablername}-enabler" />
+			</zip>
+   			
+	   		<!-- Assemble container.xml portions -->
+			<xslt style="lib/xslt/assemble-container.xsl" 
+				in="src/hadoop-@{enablername}-enabler/container.xml" 
+				out="build/@{enablername}/assemble-containers.xsl.log"> 
+				<param name="enablername-param" expression="@{enablername}"/>
+				<param name="container.tmp-param" expression="build/@{enablername}/container.tmp"/>
+				<param name="rcv.tmp-param" expression="build/@{enablername}/rcv.tmp"/>
+			</xslt>
+	   	
+	   		<!-- Merge consolidated Runtime Context Variables into container  -->
+			<local name="rcv.tmp.resource" />
+	   		<loadresource property="rcv.tmp.resource">
+			   <file file="build/@{enablername}/rcv.tmp"/>
+			</loadresource>
+	        <copy file="build/@{enablername}/container.tmp" tofile="build/@{enablername}/container.xml" overwrite="true">
+	            <filterchain>
+	                <replacetokens>
+	                    <token key="runtimeContextTemplate-here" value="${rcv.tmp.resource}"/>
+	                </replacetokens>
+	            </filterchain>
+	        </copy>
+
+   			<!-- Add container.xml to gridlib  -->
+			<zip destfile="${gridlib}/${Product}-@{enablername}-enabler-${GridLibraryVersion}-gridlib.zip" excludes="" update="true">
+				<zipfileset file="build//@{enablername}/container.xml" />
+			</zip>
+	   </sequential>
+	</macrodef>
+	
+	<target name="clean">
+		<delete dir="${gridlib}" />
+		<delete dir="build" />
+	</target>
+
+	<target name="compile">
+		<mkdir dir="build/classes" />
+		<javac srcdir="src/java" destdir="build/classes" classpath="${lib}/SilverFabricSDK/SilverFabricSDK.jar" includeantruntime="false" />
+	</target>
+
+	<target name="jar" depends="clean,compile">
+		<jar destfile="build/jars/jars/HadoopEnabler${GridLibraryVersion}.jar" basedir="build/classes" />
+	</target>
+
+	<target name="core.gridlib" depends="clean,jar">
+		<zip destfile="${GridLibraryName-core}" excludes="">
+			<zipfileset dir="src/hadoop-enabler" />
+		</zip>
+		<zip destfile="${GridLibraryName-core}" excludes="" update="true">
+			<zipfileset dir="build/jars" />
+		</zip>	
+	</target>
+
+	<target name="psuedocluster.gridlib" depends="clean,jar">
+		<macro-assemble-gridlib enablername="psuedocluster"/>
+	</target>
+
+	<target name="namenode.gridlib" depends="clean,jar">
+		<macro-assemble-gridlib enablername="namenode"/>
+	</target>
+
+	<target name="secondarynamenode.gridlib" depends="clean,jar">
+		<macro-assemble-gridlib enablername="secondarynamenode"/>
+	</target>
+
+	<target name="datanode.gridlib" depends="clean,jar">
+		<macro-assemble-gridlib enablername="datanode"/>
+	</target>
+
+	<target name="jobtracker.gridlib" depends="clean,jar">
+		<macro-assemble-gridlib enablername="jobtracker"/>
+	</target>
+
+	<target name="tasktracker.gridlib" depends="clean,jar">
+		<macro-assemble-gridlib enablername="tasktracker"/>
+	</target>
+
+	<target name="balancer.gridlib" depends="clean,jar">
+		<macro-assemble-gridlib enablername="balancer"/>
+	</target>
+
+	<target name="gridlib" depends="core.gridlib, psuedocluster.gridlib, namenode.gridlib, secondarynamenode.gridlib, 
+									datanode.gridlib, jobtracker.gridlib, tasktracker.gridlib,
+									balancer.gridlib" />
+
+	<target name="deploy" depends="gridlib">
+		<!-- 
+		<property name="sfsctl.broker.host.name" value="sf50primary" />
+		<property name="sfsctl.broker.host.user" value="demouser" />
+		<property name="sfsctl.broker.host.password" value="welcome1"/> 
+		<property name="sfsctl.broker.host.install.dir" value="/opt/tibco/fabric/" />
+		-->
+		<property name="sfsctl.broker.host.name" value="sfdemo" /> 
+		<property name="sfsctl.broker.host.user" value="ec2-user" />
+		<property name="sfsctl.broker.host.keyfile" value="C:/my/codeprojects/aws/tibcokeypair.pem"/>
+		<property name="sfsctl.broker.host.install.dir" value="/opt/tibco/SilverFabric/fabric/" />
+				
+		<property name="sfsctl.tools.dir" value="../sfs-toolkit" />
+		<property name="sfsctl.gridpush.dir" value="${gridlib}" />
+		
+		<ant dir="." antfile="${sfsctl.tools.dir}/ant/sfsBuild-gridpush.xml" />
+
+	</target>
+
+</project>

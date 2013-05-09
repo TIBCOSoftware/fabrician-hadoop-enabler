@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<container class="com.datasynapse.fabric.container.ExecContainer">
+	<!-- *******************************************************
+	hadoop-namenode-container.xml
+	
+	Contains container definitions used by hadoop enablers 
+	that support the namenode daemon.
+	******************************************************** -->
+	<property name="name" value="Hadoop Balancer" />
+	<property name="description" value="Hadoop File System Balancer" />
+	<property name="supportedDomainType" value="Default" />
+	<property name="blocking" value="false" />
+	<property name="distributionVersion" value="1.0" />
+	<property name="scriptDirectory" value="scripts" />
+
+	<runtimeContextTemplate class="com.datasynapse.fabric.common.DefaultRuntimeContext">
+
+		<!-- Hadoop Enabler Common Variables -->		
+		<variable class="com.datasynapse.fabric.common.RuntimeContextVariable">
+			<property name="name" value="hadoop_enabler_ENABLER_RUNNING_POLLPERIOD" /><property name="description" value="Seconds to wait between tests to verify Enabler is still running." />
+			<property name="value" value="15" />
+			<property name="type" value="String" /><property name="autoIncrementType" value="None"/>
+		</variable>
+
+	</runtimeContextTemplate>
+
+	<statisticsProvider
+		class="com.datasynapse.fabric.stats.provider.ContainerScriptStatisticsProvider">
+		<!-- Hadoop Enabler common Statistics -->
+		<supportedStatistic
+			class="com.datasynapse.fabric.common.script.ScriptStatisticsMetadata">
+			<property name="name" value="enabler_HEAP_MEMORY_USAGE" />
+			<property name="description" value="HEAP_MEMORY_USAGE" />
+			<property name="units" value="MB" />
+			<property name="default" value="true" />
+			<evaluator
+				class="com.datasynapse.fabric.stats.evaluator.ConvertBytesToMegabytesEvaluator" />
+			<aggregator
+				class="com.datasynapse.fabric.stats.aggregator.SourceAveragedAggregator" />
+		</supportedStatistic>
+		<supportedStatistic
+			class="com.datasynapse.fabric.common.script.ScriptStatisticsMetadata">
+			<property name="name" value="enabler_NON_HEAP_MEMORY_USAGE" />
+			<property name="description" value="NON_HEAP_MEMORY_USAGE" />
+			<property name="units" value="MB" />
+			<property name="default" value="true" />
+			<evaluator
+				class="com.datasynapse.fabric.stats.evaluator.ConvertBytesToMegabytesEvaluator" />
+			<aggregator
+				class="com.datasynapse.fabric.stats.aggregator.SourceAveragedAggregator" />
+		</supportedStatistic>
+		<supportedStatistic
+			class="com.datasynapse.fabric.common.script.ScriptStatisticsMetadata">
+			<property name="name" value="enabler_DISK_SPACE_FREE" />
+			<property name="description" value="DISK_SPACE_FREE" />
+			<property name="units" value="MB" />
+			<property name="default" value="true" />
+			<aggregator
+				class="com.datasynapse.fabric.stats.aggregator.SourceAveragedAggregator" />
+		</supportedStatistic>
+		<supportedStatistic
+			class="com.datasynapse.fabric.common.script.ScriptStatisticsMetadata">
+			<property name="name" value="enabler_DISK_SPACE_USED" />
+			<property name="description" value="DISK_SPACE_USED" />
+			<property name="units" value="MB" />
+			<property name="default" value="true" />
+			<aggregator
+				class="com.datasynapse.fabric.stats.aggregator.SourceAveragedAggregator" />
+		</supportedStatistic>
+		<supportedStatistic
+			class="com.datasynapse.fabric.common.script.ScriptStatisticsMetadata">
+			<property name="name" value="enabler_DISK_SPACE_USED_PERCENT" />
+			<property name="description" value="DISK_SPACE_USED_PERCENT" />
+			<property name="units" value="percent" />
+			<property name="default" value="true" />
+			<aggregator
+				class="com.datasynapse.fabric.stats.aggregator.SourceAveragedAggregator" />
+		</supportedStatistic>
+
+	</statisticsProvider>
+
+	<script class="com.datasynapse.fabric.common.script.Script">
+		<property name="languageVersion" value="2.5" />
+		<property name="name" value="hadoop_enabler_balancer.py" />
+		<property name="language" value="python" />
+	</script>
+
+</container>

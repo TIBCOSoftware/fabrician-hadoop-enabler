@@ -1,0 +1,6 @@
+<configuration>
+     <property><name>mapred.job.tracker</name><value>${hadoop_enabler_JOBTRACKER_HOST}:${hadoop_enabler_JOBTRACKER_BASEPORT}</value></property>
+     <property><name>mapred.job.tracker.http.address</name><value>${hadoop_enabler_JOBTRACKER_HOST_IP}:${hadoop_enabler_JOBTRACKER_HTTP_BASEPORT}</value></property>
+     <property><name>mapred.task.tracker.http.address</name><value>0.0.0.0:${hadoop_enabler_TASKTRACKER_HTTP_BASEPORT}</value></property>
+     ${hadoop_enabler_USERPROPS_MAPRED}
+</configuration>

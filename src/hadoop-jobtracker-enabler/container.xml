@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<container class="com.datasynapse.fabric.container.ExecContainer">
+	<!-- *******************************************************
+	Jobtracker Enabler
+	******************************************************** -->
+	<property name="name" value="Hadoop Jobtracker"/>
+	<property name="description" value="Hadoop Jobtracker Daemon" />
+
+	<runtimeContextTemplate class="com.datasynapse.fabric.common.DefaultRuntimeContext">
+		<!-- Hadoop Daemon Flags -->	
+		<variable class="com.datasynapse.fabric.common.RuntimeContextVariable">
+			<property name="name" value="hadoop_enabler_ENABLE_NAMENODE" /><property name="description" value="Enable the NameNode on this Component." />
+			<property name="value" value="False" />
+			<property name="type" value="String" /><property name="autoIncrementType" value="None"/>
+		</variable>
+		<variable class="com.datasynapse.fabric.common.RuntimeContextVariable">
+			<property name="name" value="hadoop_enabler_ENABLE_SECONDARYNAMENODE" /><property name="description" value="Enable the Secondary NameNode on this Component." />
+			<property name="value" value="False" />
+			<property name="type" value="String" /><property name="autoIncrementType" value="None"/>
+		</variable>
+		<variable class="com.datasynapse.fabric.common.RuntimeContextVariable">
+			<property name="name" value="hadoop_enabler_ENABLE_DATANODE" /><property name="description" value="Enable the DateNode on this Component." />
+			<property name="value" value="False" />
+			<property name="type" value="String" /><property name="autoIncrementType" value="None"/>
+		</variable>
+		<variable class="com.datasynapse.fabric.common.RuntimeContextVariable">
+			<property name="name" value="hadoop_enabler_ENABLE_JOBTRACKER" /><property name="description" value="Enable the JobTracker on this Component." />
+			<property name="value" value="True" />
+			<property name="type" value="String" /><property name="autoIncrementType" value="None"/>
+		</variable>
+		<variable class="com.datasynapse.fabric.common.RuntimeContextVariable">
+			<property name="name" value="hadoop_enabler_ENABLE_TASKTRACKER" /><property name="description" value="Enable the TaskTracker on this Component." />
+			<property name="value" value="False" />
+			<property name="type" value="String" /><property name="autoIncrementType" value="None"/>
+		</variable>
+	</runtimeContextTemplate>
+	
+	<include file="../container-modules/hadoop-jobtracker-container.xml"/>
+	<include file="../container-modules/hadoop-daemons-container.xml"/>
+	<include file="../container-modules/hadoop-common-container.xml"/>
+</container>

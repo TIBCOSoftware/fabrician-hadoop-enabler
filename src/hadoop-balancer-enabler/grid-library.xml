@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<grid-library>
+	<grid-library-name>hadoop-balancer-enabler</grid-library-name>
+	<grid-library-version>1.0</grid-library-version>
+	<jar-path>
+		<pathelement>jars</pathelement>
+	</jar-path>
+</grid-library>

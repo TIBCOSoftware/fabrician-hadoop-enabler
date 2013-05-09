@@ -1,0 +1,18 @@
+The Hadoop Enabler requires a that create giridlib for Hadoop Distribution and copy it to onto your Silver Fabric broker.
+
+Source code setup
+1. Download an executable build of hadoop from http://hadoop.apache.org/
+2. Untar the contents into the src/ folder.  When you are done you should have a single sub-directory of the format hadoop-{productversion} (e.g. src/hadoop-1.1.2).
+
+Manual Build
+3. Edit src/grid-library.xml and change the grid-libarary-name to match the version of Hadoop.  For example:
+	<grid-library-name>hadoop-1.1.2-distribution</grid-library-name>
+4. Zip the contents of the src directory into a zip file named hadoop-[hadoop-version]-distribution-1.0-gridlib.zip, where [hadoop-version] is the version of hadoop. 
+
+ANT Build
+3. Edit build.xml and set the productversion property
+4. Run build.xml, zip file will be placed in gridlib/ sub-directory.
+
+Upload to the Silver Fabric Broker
+1. Copy the zip file to the gridlib directory your Silver Fabric Broker: [SF Install]/webapps/livecluster/deploy/resources/gridlib
+ 

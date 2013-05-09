@@ -1,0 +1,5 @@
+<containerConfig>
+  	<configFiles baseDir="./" include="hadoop-content/conf/*">
+		<velocity enabled="true"/>
+	</configFiles>
+</containerConfig>

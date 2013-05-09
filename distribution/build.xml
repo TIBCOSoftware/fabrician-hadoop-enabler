@@ -1,0 +1,22 @@
+<project name="scripting distribution" default="gridlib" basedir=".">
+	<!-- Set Hadoop Distribution Version befpre running-->
+	<property name="ProductVersion" value="1.0.4"/>
+	<!-- -->
+	<property name="GridLibraryVersion" value="1.0"/>
+	<property name="GridLibraryName" value="hadoop-${ProductVersion}-distribution-${GridLibraryVersion}-gridlib.zip"/>
+	<target name="clean">
+		<delete dir="gridlib" />
+		<delete file="src/grid-library.xml" />
+	</target>
+	<target name="gridlib" depends="clean">
+		<echoxml file="src/grid-library.xml">
+			<grid-library>
+				<grid-library-name>hadoop-${ProductVersion}-distribution</grid-library-name>
+				<grid-library-version>${GridLibraryVersion}</grid-library-version>
+			</grid-library>
+		</echoxml>
+		<zip destfile="gridlib/${GridLibraryName}" excludes="">
+			<zipfileset dir="src"/>
+		</zip>		
+	</target>	
+</project>
