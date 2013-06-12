@@ -57,24 +57,21 @@ In addition to enabling Hadoop's out-of-the box processes, this enable set also 
 or simplifies some of the common administrative tasks of a Hadoop cluster.
 
 <ul>
-<li>**Automated Rebalancing** - When one or new Datanodes are added, the Balancer will automatically be invoked to distribute data to the new node(s)</li>
-<li>**Managed Decommissioning** - When stopping datanodes on an active cluster, data blocks are automatically offloaded to other nodes before shutdown is complete.</li>
-<li>**RackAwareness Configuration Policies** - Allow the users to control RackAwareness via pre-built, configurable policies as opposed to developing their own scripts.</li>
-<li>**UI Routing** - Maps well-known and persistent URLs to Hadoop Web User Interfaces so that Hadoop processes may be moved between nodes without disrupting clients.</li>
+<li><b>Automated Rebalancing</b> - When one or new Datanodes are added, the Balancer will automatically be invoked to distribute data to the new node(s)</li>
+<li><b>Managed Decommissioning</b> - When stopping datanodes on an active cluster, data blocks are automatically offloaded to other nodes before shutdown is complete.</li>
+<li><b>RackAwareness Configuration Policies</b> - Allow the users to control RackAwareness via pre-built, configurable policies as opposed to developing their own scripts.</li>
+<li><b>UI Routing</b> - Maps well-known and persistent URLs to Hadoop Web User Interfaces so that Hadoop processes may be moved between nodes without disrupting clients.</li>
 </ul>
 
 Installation
 --------------------------------------
 * Prerequisites
   * Tibco Silver Fabric
-    This Enabler was originally developed and tested on Silver Fabric 5.0.1.  
+    * This Enabler was originally developed and tested on Silver Fabric 5.0.1.  
   * Engine Operating System
-    The Hadoop enabler was originally built and tested on Linux.
-    It might work on similar OS's but the current version specifically will not work on Windows.
+    * The Hadoop enabler was originally built and tested on Linux. It might work on similar OS's but the current version specifically will not work on Windows.
   * Engine Host Configuration
-    Hadoop requires that hosts be able to communicate via passphraseless SSH.  This Hadoop Enabler assumes 
-    that this configuration has been or will be performed prior to run time.  See the Hadoop documentation 
-    for more information on how to configure passphraseless SSH.
+    * Hadoop requires that hosts be able to communicate via passphraseless SSH.  This Hadoop Enabler assumes that this configuration has been or will be performed prior to run time.  See the Hadoop documentation for more information on how to configure passphraseless SSH.
 
 Runtime Grid Libraries
 --------------------------------------
@@ -123,12 +120,12 @@ ${hadoop_enabler_NAMENODE_NAME_DIR_REMOTE}.  When you start you first start your
 the directory defined by this variable should not exist.  The Hadoop Enabler will then create 
 and initialize both the remote and local copies.
 
-**Warning**: It is important during initial restart that the remote directory does not exist.  
+*Warning*: It is important during initial restart that the remote directory does not exist.  
 An empty directory at the defined location will confuse Hadoop and cause unpredictable results.  
 If there is a leftover directory from a previous execution of your Hadoop cluster you should 
 delete it manually before starting your Hadoop cluster.
 
-**Note**: A complete loss of the Name Directory's metadata  would mandate a complete reloading 
+*Note*: A complete loss of the Name Directory's metadata  would mandate a complete reloading 
 your Hadoop cluster.  It is best to minimize the chance of any accidental deletion. 
 For this reason, and given that complete Hadoop restarts are intended to be rare, the deletion
 of any previous Name Directory has been left as a manual task in this version of the Enabler.
@@ -224,14 +221,18 @@ The following variables on the Namenode Enabler are used to control the Rackawar
 When the RackAwareness Policy is set to CONFIG_FILE (the default), the Hadoop Enabler attempts 
 to retrieve the rack value from a file.  The file contains a list of regular expressions followed 
 by the rack value to be used.  For example:
-\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#
-\# Hadoop Rackaware Configuration
-\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#
+
+```
+####################################################
+# Hadoop Rackaware Configuration
+####################################################
 192.168.247.132  /dc1/rack1
 192.168.247.133  /dc1/rack1
 192.168.247.134  /dc1/rack1
 192.168.247.*    /dc2/rack2
 192.168.248.*    /dc2/rack3
+```
+
 If multiple matches exist, the first one located, starting from the top of the file will be used.  
 If no match is found the default value will be used.
 ###### ENV_VARIABLE Policy
@@ -277,8 +278,8 @@ User's Guide for more details on configuring HTTP Support). The complete URL map
 daemon process will follow the pattern shown in the table below.
 <table>
   <tr>
-    <td>Process</td>
-    <td>VirtualRouter Mapping</td>
+    <th>Process</th>
+    <th>VirtualRouter Mapping</th>
   </tr>
   <tr>
     <td>Namenode</td>
@@ -338,8 +339,10 @@ is a set of Reserved Properties that are controlled by the Hadoop enabler and sh
 
 For example to change the default replication factor and block size you would set ${hadoop.namenode.userprops.hdfs} to: 
 
+```xml
 <property><name>dfs.replication</name><value>2</value></property>
 <property><name>dfs.block.size</name><value>16777216</value></property>
+```
 
 
 Statistics
