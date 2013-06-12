@@ -65,13 +65,15 @@ or simplifies some of the common administrative tasks of a Hadoop cluster.
 
 Installation
 --------------------------------------
-* Prerequisites
-  * Tibco Silver Fabric
-    * This Enabler was originally developed and tested on Silver Fabric 5.0.1.  
-  * Engine Operating System
-    * The Hadoop enabler was originally built and tested on Linux. It might work on similar OS's but the current version specifically will not work on Windows.
-  * Engine Host Configuration
-    * Hadoop requires that hosts be able to communicate via passphraseless SSH.  This Hadoop Enabler assumes that this configuration has been or will be performed prior to run time.  See the Hadoop documentation for more information on how to configure passphraseless SSH.
+<ul>
+<li>Prerequisites
+  <ul>
+    <li>Tibco Silver Fabric<br>This Enabler was originally developed and tested on Silver Fabric 5.0.1.</li>  
+    <li>Engine Operating System<br>The Hadoop enabler was originally built and tested on Linux. It might work on similar OS's but the current version specifically will not work on Windows.</li>
+    <li>Engine Host Configuration<br>Hadoop requires that hosts be able to communicate via passphraseless SSH.  This Hadoop Enabler assumes that this configuration has been or will be performed prior to run time.  See the Hadoop documentation for more information on how to configure passphraseless SSH.</li>
+  </ul>
+</li>
+</ul>    
 
 Runtime Grid Libraries
 --------------------------------------
@@ -170,8 +172,8 @@ nodes will be assigned to a default rack
 
 <table>
   <tr>
-    <td>RackAwareness Policy</td>
-    <td>Description</td>
+    <th>RackAwareness Policy</th>
+    <th>Description</th>
   </tr>
   <tr>
     <td>CONFIG_FILE</td>
@@ -267,8 +269,8 @@ a routine schedule, cron or some other external scheduling tool should be used.
 All Hadoop Daemons include a Web UI and the Enablers that support these daemons use 
 Silver Fabric's HTTP Support. HTTP Support allows users to associate well-known URL with 
 HTTP enabled UIs within a cloud of transient hosts.  Note: If you Master Nodes (Namenode, 
-Secondary Namenode and Jobtracker)are all configured to run on specific nodes and engine 
-instances (see section 3.1.1 Host) this feature may not be necessary.
+Secondary Namenode, and Jobtracker) are all configured to run on specific nodes and engine 
+instances (see the Host section) this feature may not be necessary.
 
 To enable this feature, the user must enable the "HTTP Support" feature on their Component definition.  
 
