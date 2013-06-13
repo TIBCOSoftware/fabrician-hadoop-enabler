@@ -5,7 +5,7 @@
         <attribute name="enablername" />
         <sequential>
             <!-- Assemble container.xml portions -->
-            <xslt style="assemble-container.xsl" in="src/main/resources/hadoop-@{enablername}-enabler/container_template.xml" out="target/hadoop-@{enablername}-enabler/assemble-containers.xsl.log">
+            <xslt style="assemble-container-xml.xsl" in="src/main/resources/hadoop-@{enablername}-enabler/container_template.xml" out="target/hadoop-@{enablername}-enabler/assemble-container-xml.xsl.log">
                 <param name="enablername-param" expression="@{enablername}" />
                	<param name="container.tmp-param" expression="target/hadoop-@{enablername}-enabler/container.tmp" />
                 <param name="rcv.tmp-param" expression="target/hadoop-@{enablername}-enabler/rcv.tmp" />
