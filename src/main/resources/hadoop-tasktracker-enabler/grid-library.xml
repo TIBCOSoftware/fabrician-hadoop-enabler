@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<grid-library>
+	<grid-library-name>hadoop-tasktracker-enabler</grid-library-name>
+	<grid-library-version>${project.version}</grid-library-version>
+	<jar-path>
+		<pathelement>ds_jars</pathelement>
+	</jar-path>
+</grid-library>

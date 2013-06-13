@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<grid-library os="all">
+    <grid-library-name>hadoop-distribution</grid-library-name>
+    <grid-library-version>${distro.version}</grid-library-version>
+</grid-library>

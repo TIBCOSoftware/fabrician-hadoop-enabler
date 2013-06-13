@@ -1,0 +1,2 @@
+This directory contains container.xml snippets for individual Hadoop daemons that are built into complete container.xmls
+from the container_template.xml files of the various enablers.

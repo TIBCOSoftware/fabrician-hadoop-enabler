@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<assembly>
+    <baseDirectory></baseDirectory>
+    <formats>
+        <format>tar.gz</format>
+    </formats>
+    <fileSets>
+        <fileSet>
+            <directory>src/main/resources/common/gridlib</directory>
+            <outputDirectory/>
+        </fileSet>
+        <fileSet>
+            <directory>src/main/resources/hadoop-pseudocluster-enabler</directory>
+            <outputDirectory />
+            <excludes>
+                <exclude>container_template.xml</exclude>
+                <exclude>grid-library.xml</exclude>
+            </excludes>
+        </fileSet>
+        <fileSet>
+            <directory>src/main/resources/hadoop-pseudocluster-enabler</directory>
+            <outputDirectory />
+            <filtered>true</filtered>
+            <includes>
+                <include>grid-library.xml</include>
+            </includes>
+        </fileSet>
+        <fileSet>
+            <directory>./target/hadoop-pseudocluster-enabler</directory>
+            <outputDirectory/>
+            <filtered>true</filtered>
+            <includes>
+                <include>container.xml</include>
+            </includes>
+        </fileSet>
+        <fileSet>
+            <directory>./target</directory>
+            <outputDirectory>ds_jars</outputDirectory>
+            <includes>
+                <include>*.jar</include>
+            </includes>
+        </fileSet>
+    </fileSets>
+</assembly>
+

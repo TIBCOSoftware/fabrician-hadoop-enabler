@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<container class="com.datasynapse.fabric.container.ExecContainer">
+	<!-- *******************************************************
+	hadoop-secondarynamenode-container.xml
+	ryan
+	Contains container definitions used by hadoop enablers 
+	that support the secondary namenode daemon.
+	******************************************************** -->
+	<runtimeContextTemplate class="com.datasynapse.fabric.common.DefaultRuntimeContext">
+		<!-- Secondary NameNode Variables -->
+		<variable class="com.datasynapse.fabric.common.RuntimeContextVariable">
+			<property name="name" value="hadoop_enabler_SECONDARYNAMENODE_HTTP_BASEPORT" />
+			<property name="description" value="The base port where the dfs secondary namenode web ui will listen on..  SilverFabric will increment at runtime to avoid conflicts." />
+			<property name="value" value="12200" />
+			<property name="type" value="String" />
+			<property name="autoIncrementType" value="Numeric"/>
+		</variable>
+		<variable class="com.datasynapse.fabric.common.RuntimeContextVariable">
+			<property name="name" value="hadoop_enabler_SECONDARYNAMENODE_JMX_BASEPORT" />
+			<property name="description" value="The base port the secondary namenode JMX server.  SilverFabric will increment at runtime to avoid conflicts." />
+			<property name="value" value="12300" />
+			<property name="type" value="String" />
+			<property name="autoIncrementType" value="Numeric"/>
+		</variable>
+		<variable class="com.datasynapse.fabric.common.RuntimeContextVariable">
+			<property name="name" value="hadoop_enabler_HDFS_EXCLUDE_FILE" />
+			<property name="description" value="Path of the file used to tell the secondary namenode which datanodes should be excluded" />
+			<property name="value" value="${CONTAINER_WORK_DIR}/tmp/exclude" />
+			<property name="type" value="String" />
+			<property name="autoIncrementType" value="None" />
+		</variable>
+		
+	</runtimeContextTemplate>
+</container>

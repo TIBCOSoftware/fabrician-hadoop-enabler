@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<container class="com.datasynapse.fabric.container.ExecContainer">
+	<!-- *******************************************************
+	Balancer Enabler
+	******************************************************** -->
+	<property name="name" value="Hadoop Balancer" />
+	<property name="description" value="Hadoop File System Balancer" />
+
+	<script class="com.datasynapse.fabric.common.script.Script">
+		<property name="languageVersion" value="2.5" />
+		<property name="name" value="hadoop_enabler_balancer.py" />
+		<property name="language" value="python" />
+	</script>
+
+	<include file="../common/container-modules/hadoop-common-container.xml"/>	
+</container>
