@@ -3,7 +3,7 @@
 <container class="com.datasynapse.fabric.container.ExecContainer">
 	<!-- *******************************************************
 	hadoop-datanode-container.xml
-	ryan
+	
 	Contains container definitions used by hadoop enablers 
 	that support the datanode daemon.
 	******************************************************** -->

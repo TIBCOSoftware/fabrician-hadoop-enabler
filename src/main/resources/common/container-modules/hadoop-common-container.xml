@@ -2,7 +2,7 @@
 <container class="com.datasynapse.fabric.container.ExecContainer">
 	<!-- *******************************************************
 	hadoop-common-container.xml
-	ryan
+	
 	Contains container definitions used by all hadoop enablers
 	******************************************************** -->
 	<property name="supportedDomainType" value="Default" />
@@ -58,7 +58,7 @@
 		
 		<variable class="com.datasynapse.fabric.common.RuntimeContextVariable">
 			<property name="name" value="hadoop_enabler_DISTRIBUTION_VERSION" /><property name="description" value="Version of Hadoop to be used" />
-			<property name="value" value="1.0.4" />
+			<property name="value" value="${container.getDistributionVersion()}" />
 			<property name="type" value="String" /><property name="autoIncrementType" value="None"/>
 		</variable>		
 		<variable class="com.datasynapse.fabric.common.RuntimeContextVariable">

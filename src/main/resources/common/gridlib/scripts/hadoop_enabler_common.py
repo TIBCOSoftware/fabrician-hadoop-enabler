@@ -51,9 +51,8 @@ def getDynamicGridlibDependencies():
     
     logger.info("[hadoop_enabler_common] Adding Hadoop distribution dependency")
     gridlib = GridlibInfo()
-    gridlib.name = "hadoop-1.0.4-distribution"
-    gridlib.name = "hadoop-" + str(hadoopVersion) + "-distribution"
-    gridlib.version = "1.0"
+    gridlib.name = "hadoop-distribution"
+    gridlib.version = str(hadoopVersion)
     
     logger.info("[hadoop_enabler_common] Exiting getDynamicGridlibDependencies()")
     return array([gridlib, defaultDomainGridlib], GridlibInfo)
@@ -187,7 +186,7 @@ def moveContentFiles():
     if ContainerUtils.isWindows():
         pass
     else:
-        ContainerUtils.getLogger(proxy).info("[hadoop_enabler_common] Copying enabler content files to version-specific sub-directoy.")       
+        ContainerUtils.getLogger(proxy).info("[hadoop_enabler_common] Copying enabler content files to version-specific sub-directory.")       
         runCommand("cp -rv " + work_dir + "/hadoop-content/* " + hadoop_home_dir, shell=True)
 #        commandline = "cp -r " + work_dir + "/hadoop-content/* " + hadoop_home_dir 
 #        runCommand(commandline)

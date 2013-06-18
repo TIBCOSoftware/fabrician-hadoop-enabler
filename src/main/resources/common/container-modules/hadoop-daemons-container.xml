@@ -3,7 +3,7 @@
 <container class="com.datasynapse.fabric.container.ExecContainer">
 	<!-- *******************************************************
 	hadoop-daemons-container.xml
-	ryan
+	
 	Contains container definitions used by all hadoop enablers 
 	that support one or more of the primary hadoop daemons
 	(namenode, secondary namenode, datanode, jobtracker and 

@@ -2,7 +2,7 @@
 <container class="com.datasynapse.fabric.container.ExecContainer">
 	<!-- *******************************************************
 	hadoop-namenode-container.xml
-	ryan
+	
 	Contains container definitions used by hadoop enablers 
 	that support the namenode daemon.
 	******************************************************** -->

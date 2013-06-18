@@ -9,7 +9,7 @@
 	<properties>
 		<fabric-version>5.0.2.7</fabric-version>
 		<fabric-location>${basedir}/SilverFabricSDK.jar</fabric-location>
-		<distro-version>1.0.4</distro-version>
+		<distro-version>1.1.2</distro-version>
 	</properties>
 	<build>
 		<plugins>
