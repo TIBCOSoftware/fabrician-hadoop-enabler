@@ -21,7 +21,7 @@ decommissionqueue_dir = "/.fabric/decom-queue/"
 recommissionqueue_dir = "/.fabric/recom-queue/"
 
 def doInit(additionalVariables):
-
+    
     ContainerUtils.getLogger(proxy).info("[hadoop_enabler] Beginning doInit()")
 
     doInit_common(additionalVariables)
@@ -89,8 +89,8 @@ def doStart():
             proxy.getContainer().getRuntimeContext().getVariable("hadoop_enabler_JOBTRACKER_PID").setValue(capturePID("proc_jobtracker"))
             proxy.getContainer().getRuntimeContext().getVariable("hadoop_enabler_TASKTRACKER_PID").setValue(capturePID("proc_tasktracker"))
             
-            runCommand(os.path.join(hadoop_bin_dir, "hadoop") + " fs -mkdir -p " + decommissionqueue_dir, expectedReturnCodes=[0, 255])
-            runCommand(os.path.join(hadoop_bin_dir, "hadoop") + " fs -mkdir -p " + recommissionqueue_dir, expectedReturnCodes=[0, 255])        
+            runCommand(os.path.join(hadoop_bin_dir, "hadoop") + " fs -mkdir " + decommissionqueue_dir, expectedReturnCodes=[0, 255])
+            runCommand(os.path.join(hadoop_bin_dir, "hadoop") + " fs -mkdir " + recommissionqueue_dir, expectedReturnCodes=[0, 255])        
 
             processDatanodeRequestsThread = proxy.getContainer().getRuntimeContext().getVariable('hadoop_enabler_NAMENODE_PROCESS_DATANODE_REQUESTS_THREAD').getValue()
             processDatanodeRequestsThread.start()
@@ -108,8 +108,8 @@ def doStart():
             ContainerUtils.getLogger(proxy).info("[hadoop_enabler] Starting Hadoop Namenode Daemon")
             startDaemon("namenode", 'hadoop_enabler_NAMENODE_PID')                    
 
-            runCommand(os.path.join(hadoop_bin_dir, "hadoop") + " fs -mkdir -p " + decommissionqueue_dir)        
-            runCommand(os.path.join(hadoop_bin_dir, "hadoop") + " fs -mkdir -p " + recommissionqueue_dir)        
+            runCommand(os.path.join(hadoop_bin_dir, "hadoop") + " fs -mkdir " + decommissionqueue_dir)        
+            runCommand(os.path.join(hadoop_bin_dir, "hadoop") + " fs -mkdir " + recommissionqueue_dir)        
 
             processDatanodeRequestsThread = proxy.getContainer().getRuntimeContext().getVariable('hadoop_enabler_NAMENODE_PROCESS_DATANODE_REQUESTS_THREAD').getValue()
             processDatanodeRequestsThread.start()
