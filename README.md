@@ -68,38 +68,33 @@ Installation
 <ul>
 <li>Prerequisites
   <ul>
-    <li>Tibco Silver Fabric<br>This Enabler was originally developed and tested on Silver Fabric 5.0.1.</li>  
+    <li>Tibco Silver Fabric<br>This Enabler was originally developed and tested on Silver Fabric 5.0.</li>  
     <li>Engine Operating System<br>The Hadoop enabler was originally built and tested on Linux. It might work on similar OS's but the current version specifically will not work on Windows.</li>
     <li>Engine Host Configuration<br>Hadoop requires that hosts be able to communicate via passphraseless SSH.  This Hadoop Enabler assumes that this configuration has been or will be performed prior to run time.  See the Hadoop documentation for more information on how to configure passphraseless SSH.</li>
   </ul>
 </li>
 </ul>    
 
-Runtime Grid Libraries
+Enabler Runtime and Distribution Grid Libraries
 --------------------------------------
-The Enabler Runtime Grid Libraries are created by building the maven project.  The build depends on the
-SilverFabricSDK jar file that is distributed with TIBCO Silver Fabric.  The SilverFabricSDK.jar file needs to
-be referenced in the maven pom.xml or it can be placed in the project root directory.
-```bash
-mvn package
-```
+The Grid Libraries for the enabler runtime and distribution are created by building the maven project.  The build depends on the
+SilverFabricSDK jar file packaged with TIBCO Silver Fabric and a Hadoop installer package.  To build Hadoop Enabler
+for the first time, perform the following steps:
+* Place the SilverFabricSDK.jar that is distributed with TIBCO Silver Fabric in the root hadoop-enabler directory.
+* Download Hadoop from http://hadoop.apache.org/ and place the *.tar.gz in the root hadoop-enabler directory.
+* In the pom.xml, make sure the hadoop-distro-source and distro-version properties match the version of Hadoop you downloaded.
+The defaults are:
+<hadoop-distro-source>${basedir}/hadoop-1.1.2.tar.gz</hadoop-distro-source>
+<distro-version>1.1.2</distro-version>
 
-Distribution Grid Library
---------------------------------------
-The Distribution Grid Library is created by performing the following steps:
-* Download and extract Hadoop from http://hadoop.apache.org/.
-* Create a grid-library.xml file with the below contents and place it alongside the hadoop-x.x.x directory.
-* Create a tar.gz or zip of the contents.
-
-```xml
-    <grid-library os="all">
-        <grid-library-name>hadoop-distribution</grid-library-name>
-        <grid-library-version>1.1.2</grid-library-version>
-    </grid-library>
-```
 This enabler supports multiple versions of Hadoop including but not limited to
 1.0.4, 1.1.2 0.23.7 and 2.03-alpha.   Note that for builds that contain MRv2 (YARN) and 
 HA Namenodes that these features are not supported by the current enabler.
+
+The grid libraries can then be built by simply running:
+```bash
+mvn package
+```
 
 Configuration
 --------------------------------------

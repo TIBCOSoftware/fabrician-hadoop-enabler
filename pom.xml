@@ -9,6 +9,7 @@
 	<properties>
 		<fabric-version>5.0.2.7</fabric-version>
 		<fabric-location>${basedir}/SilverFabricSDK.jar</fabric-location>
+        <hadoop-distro-source>${basedir}/hadoop-1.1.2.tar.gz</hadoop-distro-source>
 		<distro-version>1.1.2</distro-version>
 	</properties>
 	<build>
@@ -198,6 +199,25 @@
                     </execution>
 				</executions>
 			</plugin>
+            <plugin>
+                <groupId>org.fabrician.maven-plugins</groupId>
+                <artifactId>distribution-plugin</artifactId>
+                <version>1.1</version>
+                <configuration>
+                    <distroSource>${hadoop-distro-source}</distroSource>
+                    <distroFilename>${project.build.directory}/hadoop-${distro-version}-distribution-gridlib.tar.gz</distroFilename>
+                    <distroResources>src/main/resources/distribution</distroResources>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>package-distribution</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>package</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
 		</plugins>
 	</build>
 	<dependencies>
@@ -208,5 +228,10 @@
 			<scope>system</scope>
 			<systemPath>${fabric-location}</systemPath>
 		</dependency>
+        <dependency>
+            <groupId>org.fabrician.maven-plugins</groupId>
+            <artifactId>distribution-plugin</artifactId>
+            <version>1.1</version>
+        </dependency>
 	</dependencies>
 </project>
