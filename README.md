@@ -84,8 +84,11 @@ for the first time, perform the following steps:
 * Download Hadoop from http://hadoop.apache.org/ and place the *.tar.gz in the root hadoop-enabler directory.
 * In the pom.xml, make sure the hadoop-distro-source and distro-version properties match the version of Hadoop you downloaded.
 The defaults are:
+
+```
 <hadoop-distro-source>${basedir}/hadoop-1.1.2.tar.gz</hadoop-distro-source>
 <distro-version>1.1.2</distro-version>
+```
 
 This enabler supports multiple versions of Hadoop including but not limited to
 1.0.4, 1.1.2 0.23.7 and 2.03-alpha.   Note that for builds that contain MRv2 (YARN) and 
