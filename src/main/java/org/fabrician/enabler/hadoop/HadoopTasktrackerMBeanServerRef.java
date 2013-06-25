@@ -9,11 +9,11 @@ package org.fabrician.enabler.hadoop;
 public class HadoopTasktrackerMBeanServerRef extends HadoopMBeanServerRef {
 
     public String getEnableFlagVar() {
-        return "hadoop_enabler_ENABLE_DATANODE";
+        return "hadoop_enabler_ENABLE_TASKTRACKER";
     }
 
     public String getJMXBasePortVar() {
-        return "hadoop_enabler_DATANODE_JMX_BASEPORT";
+        return "hadoop_enabler_TASKTRACKER_JMX_BASEPORT";
     }
 
 }
