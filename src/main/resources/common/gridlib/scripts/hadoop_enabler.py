@@ -379,7 +379,7 @@ def setStaticRoute(info, routenum, prefix, port):
 
 def getStatistic(name):
 
-    ContainerUtils.getLogger(proxy).fine("[hadoop_enabler] Beginning getStatistic()")
+    ContainerUtils.getLogger(proxy).finer("[hadoop_enabler] Beginning getStatistic()")
 
     if rcvTrue('hadoop_enabler_ENABLE_NAMENODE'):
     
@@ -421,7 +421,7 @@ def getStatistic(name):
     else:
         return (getStatistic_common(name))        
     
-    ContainerUtils.getLogger(proxy).fine("[hadoop_enabler] Exiting getStatistic()")
+    ContainerUtils.getLogger(proxy).finer("[hadoop_enabler] Exiting getStatistic()")
 
 """ **********************************************************
 Namenode Functions

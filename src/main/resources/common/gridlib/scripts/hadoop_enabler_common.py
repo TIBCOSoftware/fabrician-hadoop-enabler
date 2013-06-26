@@ -193,7 +193,7 @@ def moveContentFiles():
     
 def rcvTrue(rcv):
     
-    ContainerUtils.getLogger(proxy).fine("[hadoop_enabler_common] checking runtimecontext variable [" + str(rcv) + "]")
+    ContainerUtils.getLogger(proxy).finer("[hadoop_enabler_common] checking runtimecontext variable [" + str(rcv) + "]")
     
     rcvvalue = proxy.getContainer().getRuntimeContext().getVariable(rcv).getValue()
     ContainerUtils.getLogger(proxy).finest("[hadoop_enabler_common] value is [" + str(rcvvalue) + "].")
@@ -203,7 +203,7 @@ def rcvTrue(rcv):
         result = False
     else:
         raise Exception("[hadoop_enabler_common] Invalid value for boolean conversion: [" + str(rcvvalue) + "]")
-    ContainerUtils.getLogger(proxy).fine("[hadoop_enabler_common] Exiting Checking enabler flag. Result is [" + str(result) + "]")
+    ContainerUtils.getLogger(proxy).finer("[hadoop_enabler_common] Exiting Checking enabler flag. Result is [" + str(result) + "]")
     return result
 
 def getScript(script):
@@ -265,7 +265,7 @@ def runCommand(commandline, stdin=None, stdout=None, expectedReturnCodes=None, s
 
         printStdoutPipe(stdout, outputlist)
 
-    ContainerUtils.getLogger(proxy).fine("[hadoop_enabler_common] exiting runCommand(). Returning outputlist:" + (str(outputlist)))
+    ContainerUtils.getLogger(proxy).finer("[hadoop_enabler_common] exiting runCommand(). Returning outputlist:" + (str(outputlist)))
     return outputlist
 
 def printStdoutPipe(stdout, outputlist):
