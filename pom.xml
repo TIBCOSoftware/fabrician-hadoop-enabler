@@ -1,48 +1,48 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<groupId>org.fabrician.enabler</groupId>
-	<artifactId>hadoop-enabler</artifactId>
-	<name>Hadoop Enabler</name>
-	<packaging>jar</packaging>
-	<version>1.0-SNAPSHOT</version>
-	<description></description>
-	<properties>
-		<fabric-version>5.0.2.7</fabric-version>
-		<fabric-location>${basedir}/SilverFabricSDK.jar</fabric-location>
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>org.fabrician.enabler</groupId>
+    <artifactId>hadoop-enabler</artifactId>
+    <name>Hadoop Enabler</name>
+    <packaging>jar</packaging>
+    <version>1.0-SNAPSHOT</version>
+    <description></description>
+    <properties>
+        <fabric-version>5.0.2.7</fabric-version>
+        <fabric-location>${basedir}/SilverFabricSDK.jar</fabric-location>
         <hadoop-distro-source>${basedir}/hadoop-1.1.2.tar.gz</hadoop-distro-source>
-		<distro-version>1.1.2</distro-version>
-	</properties>
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>2.3.2</version>
-				<configuration>
-					<source>1.7</source>
-					<target>1.7</target>
-					<debug>true</debug>
-				</configuration>
-			</plugin>
-			<plugin>
-				<artifactId>maven-jar-plugin</artifactId>
+        <distro-version>1.1.2</distro-version>
+    </properties>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.3.2</version>
+                <configuration>
+                    <source>1.7</source>
+                    <target>1.7</target>
+                    <debug>true</debug>
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-jar-plugin</artifactId>
                 <version>2.4</version>
-				<executions>
-					<execution>
-						<id>enabler-jar</id>
-						<phase>process-classes</phase>
-						<goals>
-							<goal>jar</goal>
-						</goals>
-						<inherited>false</inherited>
-						<configuration>
-							<includes>
-								<include>**/*.class</include>
-							</includes>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
+                <executions>
+                    <execution>
+                        <id>enabler-jar</id>
+                        <phase>process-classes</phase>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                        <inherited>false</inherited>
+                        <configuration>
+                            <includes>
+                                <include>**/*.class</include>
+                            </includes>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
             <plugin>
                 <artifactId>maven-antrun-plugin</artifactId>
                 <executions>
@@ -55,7 +55,7 @@
                         <configuration>
                             <tasks>
                                 <taskdef resource="net/sf/antcontrib/antcontrib.properties" />
-                                <ant antfile="${basedir}/build.xml" target="create_container_xmls" inheritRefs="true"/>
+                                <ant antfile="${basedir}/build.xml" target="create_container_xmls" inheritRefs="true" />
                             </tasks>
                         </configuration>
                     </execution>
@@ -72,10 +72,10 @@
                         <version>1.6.5</version>
                     </dependency>
                     <dependency>
-                      <groupId>ant-contrib</groupId>
-                      <artifactId>ant-contrib</artifactId>
-                      <version>1.0b3</version>                        
-                      <exclusions>
+                        <groupId>ant-contrib</groupId>
+                        <artifactId>ant-contrib</artifactId>
+                        <version>1.0b3</version>
+                        <exclusions>
                             <exclusion>
                                 <groupId>ant</groupId>
                                 <artifactId>ant</artifactId>
@@ -83,15 +83,15 @@
                         </exclusions>
                     </dependency>
                     <dependency>
-                      <groupId>ant</groupId>
-                      <artifactId>ant-optional</artifactId>
-                      <version>1.5.3-1</version>
+                        <groupId>ant</groupId>
+                        <artifactId>ant-optional</artifactId>
+                        <version>1.5.3-1</version>
                     </dependency>
                 </dependencies>
             </plugin>
-			<plugin>
-				<artifactId>maven-assembly-plugin</artifactId>
-				<executions>
+            <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <executions>
                     <execution>
                         <id>hadoop-balancer-enabler</id>
                         <configuration>
@@ -197,8 +197,8 @@
                             <goal>single</goal>
                         </goals>
                     </execution>
-				</executions>
-			</plugin>
+                </executions>
+            </plugin>
             <plugin>
                 <groupId>org.fabrician.maven-plugins</groupId>
                 <artifactId>distribution-plugin</artifactId>
@@ -218,20 +218,20 @@
                     </execution>
                 </executions>
             </plugin>
-		</plugins>
-	</build>
-	<dependencies>
-		<dependency>
-			<groupId>com.datasynapse.fabricserver</groupId>
-			<artifactId>fabric</artifactId>
-			<version>${fabric-version}</version>
-			<scope>system</scope>
-			<systemPath>${fabric-location}</systemPath>
-		</dependency>
+        </plugins>
+    </build>
+    <dependencies>
+        <dependency>
+            <groupId>com.datasynapse.fabricserver</groupId>
+            <artifactId>fabric</artifactId>
+            <version>${fabric-version}</version>
+            <scope>system</scope>
+            <systemPath>${fabric-location}</systemPath>
+        </dependency>
         <dependency>
             <groupId>org.fabrician.maven-plugins</groupId>
             <artifactId>distribution-plugin</artifactId>
             <version>1.1</version>
         </dependency>
-	</dependencies>
+    </dependencies>
 </project>
