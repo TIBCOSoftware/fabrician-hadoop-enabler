@@ -163,3 +163,4 @@ pip-log.txt
 .DS_Store
 /target
 /SilverFabricSDK.jar
+/hadoop-*.tar.gz
