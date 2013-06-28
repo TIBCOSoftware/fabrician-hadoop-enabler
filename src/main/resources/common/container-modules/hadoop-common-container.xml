@@ -31,14 +31,14 @@
 	    <supportedStatistic class="com.datasynapse.fabric.common.script.ScriptStatisticsMetadata"> 
 			<property name="name" value="enabler_DISK_SPACE_FREE"/>
 			<property name="description" value="DISK_SPACE_FREE"/>
-		    <property name="units" value="MB"/>
+		    <property name="units" value="GB"/>
 		    <property name="default" value="true"/>
 		  	<aggregator class="com.datasynapse.fabric.stats.aggregator.SourceAveragedAggregator"/>
 	    </supportedStatistic>
 	    <supportedStatistic class="com.datasynapse.fabric.common.script.ScriptStatisticsMetadata"> 
 			<property name="name" value="enabler_DISK_SPACE_USED"/>
 			<property name="description" value="DISK_SPACE_USED"/>
-		    <property name="units" value="MB"/>
+		    <property name="units" value="GB"/>
 		    <property name="default" value="true"/>
 		  	<aggregator class="com.datasynapse.fabric.stats.aggregator.SourceAveragedAggregator"/>
 	    </supportedStatistic>

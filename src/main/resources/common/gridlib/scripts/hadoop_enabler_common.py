@@ -313,9 +313,11 @@ def getStatistic_common(name):
     memoryBean = ManagementFactory.getMemoryMXBean()
 
     if name == "enabler_HEAP_MEMORY_USAGE":
-        return memoryBean.getHeapMemoryUsage().getUsed()
+        bytes = memoryBean.getHeapMemoryUsage().getUsed()
+        return bytes / 1024 / 1024 # convert to MiB
     elif name == "enabler_NON_HEAP_MEMORY_USAGE":
-        return memoryBean.getNonHeapMemoryUsage().getUsed()
+        bytes = memoryBean.getNonHeapMemoryUsage().getUsed()
+        return bytes / 1024 / 1024 # convert to MiB
     
     elif name == "enabler_DATANODE_DECOMMISION_REQUESTS":
         
@@ -332,7 +334,7 @@ def getStatistic_common(name):
             count = int(stdout.split()[1])
             return int(count)
         elif (output[0] == 255):
-            #Decommission request directoy doesn't exist.  Not expected to exist until the some datanode posts the first request  
+            # Decommission request directory doesn't exist.  Not expected to exist until the some datanode posts the first request  
             return int(0)    
         else:
             ContainerUtils.getLogger(proxy).warning("[hadoop_enabler_common] Unexpected return code [" + str(output[0]) + 
@@ -345,10 +347,12 @@ def getStatistic_common(name):
         tmpdir = proxy.getContainer().getRuntimeContext().getVariable('hadoop_enabler_TMP_DIR').getValue()    
         
         if name == "enabler_DISK_SPACE_FREE":
-            return getStatistic_disk(tmpdir)[0]
+            blocks = int(getStatistic_disk(tmpdir)[0])
+            return blocks / 1024 / 1024 # convert 1024-byte blocks to GiB
             #return available
         elif name == "enabler_DISK_SPACE_USED":
-            return getStatistic_disk(tmpdir)[1]
+            blocks = int(getStatistic_disk(tmpdir)[1])
+            return blocks / 1024 / 1024  # convert 1024-byte blocks to GiB
             #return used
         elif name == "enabler_DISK_SPACE_USED_PERCENT":
             return getStatistic_disk(tmpdir)[2]
