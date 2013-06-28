@@ -1,6 +1,6 @@
 <configuration>
      <property><name>fs.default.name</name><value>hdfs://${hadoop_enabler_NAMENODE_HOST}:${hadoop_enabler_NAMENODE_BASEPORT}</value></property>
-     <property><name>hadoop.tmp.dir</name><value>${hadoop_enabler_TMP_DIR}/hadoop-${user.name}</value></property>
+     <property><name>hadoop.tmp.dir</name><value>${hadoop_enabler_TMP_DIR}/hadoop-${ContainerUtils.getSystemProperty("user.name")}</value></property>
      <property><name>topology.script.file.name</name><value>${hadoop_enabler_HADOOP_BIN_DIR}/hadoop_enabler_RACKAWARENESS.sh</value></property>
      ${hadoop_enabler_USERPROPS_CORE}
 </configuration>

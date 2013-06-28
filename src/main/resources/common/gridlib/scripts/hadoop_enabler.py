@@ -384,7 +384,12 @@ def getStatistic(name):
     if rcvTrue('hadoop_enabler_ENABLE_NAMENODE'):
     
         if name.startswith('enabler_NAMEDIR_'):
-            namenodeDir = proxy.getContainer().getRuntimeContext().getVariable('hadoop_enabler_NAMENODE_NAME_DIR').getValue()
+            namenodeDir = proxy.container.getStringVariableValue('hadoop_enabler_NAMENODE_NAME_DIR')
+            
+            if namenodeDir == None or namenodeDir.strip() == '':
+                # use default in this case (this should match the hadoop-tmp-dir property in core-site.xml)
+                namenodeDir = proxy.container.getStringVariableValue("hadoop_enabler_TMP_DIR") + "/hadoop-" + ContainerUtils.getSystemProperty("user.name")
+                
             namenodeDirList = namenodeDir.split(",")
             
             if name == "enabler_NAMEDIR_FREE":
@@ -393,9 +398,11 @@ def getStatistic(name):
                     for directory in namenodeDirList:
                         directoryStripped = directory.lstrip().rstrip()
                         if not (directoryStripped == ""):
-                            free.append(getStatistic_disk(directoryStripped)[0])
+                            blocks = int(getStatistic_disk(directoryStripped)[0])
+                            gb = blocks / 1024 / 1024 # convert to GiB
+                            free.append(gb)
                 else:
-                    ContainerUtils.getLogger(proxy).severe("[hadoop_enabler] No directories found in ${hadoop_enabler_NAMENODE_NAME_DIR}")  #TODO change to use defulat value
+                    ContainerUtils.getLogger(proxy).severe("[hadoop_enabler] No directories found in ${hadoop_enabler_NAMENODE_NAME_DIR}")
                 if free != None and len(free) > 0:
                     return min(free)
                 else:
@@ -408,7 +415,7 @@ def getStatistic(name):
                         if not (directoryStripped == ""):
                             usedPercent.append(getStatistic_disk(directoryStripped)[2])
                 else:
-                    ContainerUtils.getLogger(proxy).severe("[hadoop_enabler] No directories found in ${hadoop_enabler_NAMENODE_NAME_DIR}")  #TODO change to use defulat value
+                    ContainerUtils.getLogger(proxy).severe("[hadoop_enabler] No directories found in ${hadoop_enabler_NAMENODE_NAME_DIR}")
                 if usedPercent != None and len(usedPercent) > 0:
                     return max(usedPercent)
                 else:

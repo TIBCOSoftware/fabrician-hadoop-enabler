@@ -10,7 +10,7 @@
    	<statisticsProvider class="com.datasynapse.fabric.stats.provider.ContainerScriptStatisticsProvider">
 	    <supportedStatistic class="com.datasynapse.fabric.common.script.ScriptStatisticsMetadata"> 
 			<property name="name" value="enabler_NAMEDIR_FREE" /><property name="description" value="Free space on drive containing Namenode's Name Directory.  If multiple Name Directories, smallest free space shown"/>
-		    <property name="units" value="MB"/>
+		    <property name="units" value="GB"/>
 		    <property name="default" value="true"/>
 			<evaluator class="com.datasynapse.fabric.stats.evaluator.ConvertBytesToMegabytesEvaluator" />
 		  	<aggregator class="com.datasynapse.fabric.stats.aggregator.SourceAveragedAggregator"/>

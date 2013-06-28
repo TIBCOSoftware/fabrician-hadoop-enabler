@@ -112,12 +112,13 @@ By default, the Namenode Enabler will use a local drive location for the Namenod
 Directory (the file location where HDFS stores metadata).  Use a local drive is optimal 
 for performance, but it also means that the data can be lost in the event of a Namenode 
 Component restart.  To ensure that this metadata survives a Namenode restart, Hadoop allows 
-users to specify a second location (e.g. a highly available SAN elsewhere in the datacenter) 
-for storing a second copy of the metadata.
+users to specify multiple locations (e.g. one might be a highly available SAN elsewhere in the datacenter) 
+for storing other copies of the metadata.
 
-The Silver Fabric runtime context variable for defining this second location is 
-${hadoop_enabler_NAMENODE_NAME_DIR_REMOTE}.  When you start you first start your Hadoop cluster, 
-the directory defined by this variable should not exist.  The Hadoop Enabler will then create 
+The Silver Fabric runtime context variable for defining these locations is 
+${hadoop_enabler_NAMENODE_NAME_DIR}, which can be a comma delimited list of directories on the filesystem
+where the DFS name node should store the name table.  When you start you first start your Hadoop cluster, 
+the directories defined by this variable should not exist.  The Hadoop Enabler will then create 
 and initialize both the remote and local copies.
 
 *Warning*: It is important during initial restart that the remote directory does not exist.  
