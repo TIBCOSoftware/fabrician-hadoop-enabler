@@ -150,24 +150,32 @@
 			<property name="autoIncrementType" value="None" />
 		</variable>
 		<variable class="com.datasynapse.fabric.common.RuntimeContextVariable">
-			<property name="name" value="hadoop_enabler_RACKAWARENESS_POLICY" /><property name="description" value="Selected Policy for RackAwareness.  Suppported Policies are 'DEFAULT', 'CONFIG_FILE' and 'ENV_VARIABLE'." />
+			<property name="name" value="hadoop_enabler_RACKAWARENESS_POLICY" />
+            <property name="description" value="Selected Policy for RackAwareness.  Suppported Policies are 'DEFAULT', 'CONFIG_FILE' and 'ENV_VARIABLE'." />
 			<property name="value" value="CONFIG_FILE" />
-			<property name="type" value="Environment" /><property name="autoIncrementType" value="None"/>
+			<property name="type" value="Environment" />
+            <property name="autoIncrementType" value="None"/>
 		</variable>
 		<variable class="com.datasynapse.fabric.common.RuntimeContextVariable">
-			<property name="name" value="hadoop_enabler_RACKAWARENESS_DEFAULT" /><property name="description" value="Defines a default Rack value to be used with the DEFAULT Rackawareness Policy" />
+			<property name="name" value="hadoop_enabler_RACKAWARENESS_DEFAULT" />
+            <property name="description" value="Defines a default Rack value to be used with the DEFAULT Rackawareness Policy" />
 			<property name="value" value="/default/rack" />
-			<property name="type" value="Environment" /><property name="autoIncrementType" value="None"/>
+			<property name="type" value="Environment" />
+            <property name="autoIncrementType" value="None"/>
 		</variable>
 		<variable class="com.datasynapse.fabric.common.RuntimeContextVariable">
-			<property name="name" value="hadoop_enabler_RACKAWARENESS_ENV_VARIABLE" /><property name="description" value="Defines the environment variable from the slave node to be used to define the rack value" />
+			<property name="name" value="hadoop_enabler_RACKAWARENESS_ENV_VARIABLE" />
+            <property name="description" value="Defines the environment variable from the slave node to be used to define the rack value" />
 			<property name="value" value="RACK" />
-			<property name="type" value="Environment" /><property name="autoIncrementType" value="None"/>
+			<property name="type" value="Environment" />
+            <property name="autoIncrementType" value="None"/>
 		</variable>
 		<variable class="com.datasynapse.fabric.common.RuntimeContextVariable">
-			<property name="name" value="hadoop_enabler_RACKAWARENESS_CONFIG_FILE" /><property name="description" value="Defines the environment variable from the slave node to be used to define the rack value" />
+			<property name="name" value="hadoop_enabler_RACKAWARENESS_CONFIG_FILE" />
+            <property name="description" value="Defines the environment variable from the slave node to be used to define the rack value" />
 			<property name="value" value="${hadoop_enabler_HADOOP_CONF_DIR}/hadoop_enabler_RACKAWARENESS.cfg" />
-			<property name="type" value="Environment" /><property name="autoIncrementType" value="None"/>
+			<property name="type" value="Environment" />
+            <property name="autoIncrementType" value="None"/>
 		</variable>
 	</runtimeContextTemplate>
 </container>
