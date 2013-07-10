@@ -151,6 +151,8 @@ def doShutdown():
     
                 ContainerUtils.getLogger(proxy).info("[hadoop_enabler] Stopping all Hadoop Daemons")
                 
+                proxy.getContainer().getRuntimeContext().getVariable('hadoop_enabler_ENABLER_SHUTTING_DOWN').setValue("True")
+                
                 if ContainerUtils.isWindows():
                     raise Exception("[hadoop_enabler] Windows not yet implemented in by this enabler.")
                 else:
